@@ -552,7 +552,8 @@ Importante: Responda APENAS com o JSON bruto, sem blocos \`\`\`json.`;
             { role: 'system', content: systemPrompt },
             { role: 'user', content: `Título do Artigo: "${promptText}". ${extraContext ? `\nContexto extra do artigo: "${extraContext}".` : ''}` }
           ],
-          temperature: (model.includes('o1') || model.includes('o3') || model.includes('5.5')) ? 1 : 0.7
+          temperature: (model.includes('o1') || model.includes('o3') || model.includes('5.5')) ? 1 : 0.7,
+          response_format: { type: "json_object" }
         })
       });
 
@@ -696,7 +697,8 @@ Importante: Não adicione blocos de markdown adicionais como \`\`\`json no iníc
             { role: 'system', content: systemPrompt },
             { role: 'user', content: userPrompt }
           ],
-          temperature: (model.includes('o1') || model.includes('o3') || model.includes('5.5')) ? 1 : 0.7
+          temperature: (model.includes('o1') || model.includes('o3') || model.includes('5.5')) ? 1 : 0.7,
+          response_format: { type: "json_object" }
         })
       });
 
