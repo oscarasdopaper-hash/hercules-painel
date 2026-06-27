@@ -1,0 +1,12 @@
+{
+  "crons": [
+    {
+      "path": "/api/cron/generate?token=saas-glossary-cron-secret-token-123!",
+      "schedule": "*/10 * * * *"
+    },
+    {
+      "path": "/api/cron/local-seo?token=saas-glossary-cron-secret-token-123!",
+      "schedule": "0 1 * * *"
+    }
+  ]
+}

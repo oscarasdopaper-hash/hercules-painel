@@ -1,0 +1,263 @@
+.explorer {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+/* Search Box Styles */
+.searchSection {
+  width: 100%;
+}
+
+.searchBox {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background-color: #ffffff;
+  border: 2px solid var(--border-color);
+  padding: 18px 24px;
+  border-radius: 99px; /* Pill shape */
+  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  max-width: 750px;
+  margin: 0 auto;
+}
+
+.searchBox:focus-within {
+  border-color: var(--tenant-primary);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--tenant-primary) 15%, transparent);
+}
+
+.searchIcon {
+  color: var(--text-muted);
+}
+
+.searchInput {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--text-main);
+  background: transparent;
+}
+
+.searchInput::placeholder {
+  color: var(--text-muted);
+  opacity: 0.8;
+}
+
+.clearSearch {
+  background: none;
+  border: none;
+  color: var(--tenant-primary);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: var(--radius-sm);
+  transition: background-color 0.2s ease;
+}
+
+.clearSearch:hover {
+  background-color: color-mix(in srgb, var(--tenant-primary) 8%, transparent);
+}
+
+/* Layout Grid - Full width charming layout */
+.layoutGrid {
+  display: block;
+  width: 100%;
+}
+
+/* Charming Grid */
+.charmingGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 32px;
+  width: 100%;
+  padding-bottom: 60px;
+}
+
+@media (max-width: 768px) {
+  .charmingGrid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}
+
+/* Charming Letter Card */
+.charmingCard {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  border-radius: 24px;
+  padding: 32px 24px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.05);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+}
+
+.charmingCard:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px -10px color-mix(in srgb, var(--tenant-primary) 15%, rgba(0,0,0,0.1));
+  border-color: color-mix(in srgb, var(--tenant-primary) 20%, transparent);
+}
+
+/* Giant Watermark Letter */
+.watermarkLetter {
+  position: absolute;
+  top: -20px;
+  right: -10px;
+  font-size: 180px;
+  font-weight: 900;
+  line-height: 1;
+  color: var(--tenant-primary);
+  opacity: 0.04;
+  user-select: none;
+  pointer-events: none;
+  z-index: 0;
+  transition: opacity 0.4s ease;
+}
+
+.charmingCard:hover .watermarkLetter {
+  opacity: 0.08;
+}
+
+/* Content wrapper above watermark */
+.cardContent {
+  position: relative;
+  z-index: 1;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.headerLetter {
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--tenant-primary);
+  line-height: 1;
+}
+
+.termCount {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-muted);
+  background: rgba(0, 0, 0, 0.04);
+  padding: 4px 10px;
+  border-radius: 99px;
+}
+
+/* Term Links List */
+.termList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.termLinkItem {
+  display: block;
+  text-decoration: none;
+  color: var(--text-main);
+  font-weight: 600;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 12px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  background: transparent;
+}
+
+.termLinkItem:hover {
+  background: color-mix(in srgb, var(--tenant-primary) 5%, transparent);
+  color: var(--tenant-primary);
+  transform: translateX(4px);
+}
+
+.termLinkText {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 90%;
+}
+
+.termLinkArrow {
+  opacity: 0;
+  transform: translateX(-10px);
+  transition: all 0.3s ease;
+  color: var(--tenant-primary);
+}
+
+.termLinkItem:hover .termLinkArrow {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* View All Button */
+.viewAllBtn {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 12px;
+  background: color-mix(in srgb, var(--tenant-primary) 10%, transparent);
+  color: var(--tenant-primary);
+  text-decoration: none;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.viewAllBtn:hover {
+  background: var(--tenant-primary);
+  color: #fff;
+}
+
+/* Empty State */
+.emptyState {
+  text-align: center;
+  padding: 80px 24px;
+  background-color: #ffffff;
+  border: 1px dashed var(--border-color);
+  border-radius: 24px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+  grid-column: 1 / -1;
+}
+
+.emptyIcon {
+  color: var(--text-muted);
+  margin-bottom: 20px;
+  opacity: 0.3;
+}
+
+.emptyState h3 {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: var(--text-main);
+}
+
+.emptyState p {
+  color: var(--text-muted);
+}

@@ -1,0 +1,527 @@
+.tenantLayout {
+  --font-family: 'Outfit', 'Inter', system-ui, -apple-system, sans-serif;
+  --bg-color: #fafbfc;
+  --card-bg: #ffffff;
+  --text-main: #1e293b;
+  --text-muted: #64748b;
+  --border-color: #e2e8f0;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -1px rgba(0,0,0,0.03);
+  --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.05), 0 4px 6px -2px rgba(0,0,0,0.02);
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+
+  font-family: var(--font-family);
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header Styles */
+.header {
+  background-color: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(226, 232, 240, 0.6);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  transition: all 0.3s ease;
+}
+
+.headerTransparent {
+  background-color: transparent !important;
+  border-bottom: none !important;
+  position: absolute !important;
+  width: 100%;
+}
+
+.headerContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logoLink {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+}
+
+.logoImg {
+  height: 40px;
+  width: auto;
+  object-fit: contain;
+}
+
+.logoText {
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--tenant-primary);
+}
+
+.logoTextLight {
+  color: #ffffff !important;
+  text-shadow: 0 0 10px rgba(255,255,255,0.2);
+}
+
+.glossaryBadge {
+  background-color: rgba(var(--tenant-primary), 0.1);
+  color: var(--tenant-primary);
+  background: color-mix(in srgb, var(--tenant-primary) 10%, transparent);
+  padding: 4px 10px;
+  border-radius: var(--radius-sm);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  border: 1px solid color-mix(in srgb, var(--tenant-primary) 20%, transparent);
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.navLink {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.navLink:hover {
+  color: var(--tenant-primary);
+}
+
+.adminButton {
+  background-color: var(--text-main);
+  color: white;
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: var(--radius-md);
+  font-size: 14px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.adminButton:hover {
+  background-color: var(--tenant-primary);
+  transform: translateY(-1px);
+}
+
+/* Hero Section */
+.heroSection {
+  background: radial-gradient(circle at top right, color-mix(in srgb, var(--tenant-primary) 15%, transparent) 0%, color-mix(in srgb, var(--tenant-primary) 2%, transparent) 50%, #ffffff 100%);
+  border-bottom: 1px solid var(--border-color);
+  padding: 80px 0 60px 0;
+}
+
+.heroContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+  text-align: center;
+}
+
+.heroTitle {
+  font-size: 48px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  margin-bottom: 16px;
+  color: var(--text-main);
+}
+
+.heroSubtitle {
+  font-size: 18px;
+  color: var(--text-muted);
+  max-width: 650px;
+  margin: 0 auto 40px auto;
+  line-height: 1.6;
+}
+
+.azNav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  padding: 20px 24px;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.azLabel {
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+}
+
+.azList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+}
+
+.azLetter {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-main);
+  border-radius: var(--radius-sm);
+  border: 1px solid transparent;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.azLetter:hover {
+  background-color: color-mix(in srgb, var(--tenant-primary) 10%, transparent);
+  color: var(--tenant-primary);
+  border-color: color-mix(in srgb, var(--tenant-primary) 20%, transparent);
+  transform: scale(1.1);
+}
+
+/* Main Content area */
+.mainContent {
+  flex: 1;
+  padding: 40px 0;
+}
+
+.mainContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Footer Styles */
+.footer {
+  background-color: #ffffff;
+  border-top: 1px solid var(--border-color);
+  padding: 32px 0;
+  margin-top: auto;
+}
+
+.footerContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+.poweredBy {
+  font-size: 12px;
+  opacity: 0.7;
+}
+
+/* No Tenant Fallback Card */
+.noTenantContainer {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle, #f3f4f6 0%, #e5e7eb 100%);
+  padding: 24px;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+.noTenantCard {
+  background: white;
+  padding: 48px;
+  border-radius: 20px;
+  box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04);
+  text-align: center;
+  max-width: 450px;
+  width: 100%;
+}
+
+.noTenantCard h1 {
+  font-size: 26px;
+  margin-bottom: 16px;
+  color: #111827;
+}
+
+.noTenantCard p {
+  color: #4b5563;
+  margin-bottom: 8px;
+  line-height: 1.5;
+}
+
+.noTenantCard strong {
+  color: #1f2937;
+  background-color: #f3f4f6;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: monospace;
+}
+
+.subText {
+  font-size: 14px;
+  color: #6b7280 !important;
+  margin-bottom: 24px !important;
+}
+
+.adminLink {
+  display: inline-block;
+  background-color: #2563eb;
+  color: white;
+  text-decoration: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: background-color 0.2s;
+}
+
+.adminLink:hover {
+  background-color: #1d4ed8;
+}
+
+.logoWrapper {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease;
+}
+
+.logoWrapper:hover {
+  transform: scale(1.02);
+}
+
+.whatsappContainer {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 1000;
+  display: flex;
+  align-items: flex-end;
+  gap: 16px;
+}
+
+.whatsappPopup {
+  background: white;
+  padding: 12px 16px;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  animation: slideInUp 0.5s cubic-bezier(0.4, 0, 0.2, 1) 2s both;
+  max-width: 260px;
+}
+
+.whatsappPopup::after {
+  content: '';
+  position: absolute;
+  right: -8px;
+  bottom: 20px;
+  border-width: 8px 0 8px 8px;
+  border-style: solid;
+  border-color: transparent transparent transparent white;
+  display: block;
+  width: 0;
+}
+
+.whatsappPopupTitle {
+  font-size: 11px;
+  font-weight: 700;
+  color: #16a34a;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.whatsappPopupText {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-main);
+  white-space: normal;
+  line-height: 1.4;
+}
+
+.whatsappFloat {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  box-shadow: 0 4px 10px rgba(37, 211, 102, 0.3), var(--shadow-lg);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  text-decoration: none;
+  background-color: white;
+  flex-shrink: 0;
+}
+
+.whatsappFloat:hover {
+  transform: scale(1.05) translateY(-4px);
+  box-shadow: 0 8px 20px rgba(37, 211, 102, 0.4), var(--shadow-lg);
+}
+
+.whatsappAvatar {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #25d366;
+}
+
+.whatsappIconBadge {
+  position: absolute;
+  bottom: -2px;
+  right: -4px;
+  background-color: #25d366;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid white;
+  animation: pulseWhatsapp 2s infinite;
+}
+
+.whatsappIconBadge svg {
+  width: 14px;
+  height: 14px;
+  fill: white;
+}
+
+@keyframes slideInUp {
+  from { opacity: 0; transform: translateY(20px) scale(0.9); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes pulseWhatsapp {
+  0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.6); }
+  70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+}
+
+.contactHeaderGroup {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.contactHeaderLink {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.contactHeaderLinkLight {
+  color: rgba(255,255,255,0.8) !important;
+}
+
+.contactHeaderLinkLight:hover {
+  color: var(--tenant-primary) !important;
+}
+
+.emailHighlight {
+  background-color: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  padding: 6px 12px;
+  border-radius: var(--radius-sm);
+  backdrop-filter: blur(5px);
+}
+
+.emailHighlight:hover {
+  background-color: var(--tenant-primary);
+  border-color: var(--tenant-primary);
+  color: white !important;
+}
+
+.contactHeaderLink svg {
+  opacity: 0.7;
+}
+
+.contactHeaderLink:hover svg {
+  opacity: 1;
+}
+
+@media (max-width: 640px) {
+  .contactHeaderGroup {
+    display: none; /* hide contact links on mobile header to avoid overlap */
+  }
+}
+
+/* Dropdown Premium Styles */
+.dropdownContainer {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdownMenu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 8px;
+  background-color: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  min-width: 220px;
+  border-radius: var(--radius-md);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  padding: 8px;
+}
+
+.dropdownContainer:hover .dropdownMenu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.dropdownItem {
+  color: var(--text-main);
+  padding: 10px 16px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  transition: all 0.2s ease;
+  display: block;
+}
+
+.dropdownItem:hover {
+  background-color: color-mix(in srgb, var(--tenant-primary) 8%, transparent);
+  color: var(--tenant-primary);
+  transform: translateX(4px);
+}
