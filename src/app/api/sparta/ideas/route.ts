@@ -51,7 +51,9 @@ Identidade da Empresa: ${company.company_identity || 'Profissional'}
 
 SUA TAREFA:
 Gere exatamente ${termsCount} títulos inéditos para o GLOSSÁRIO (termos técnicos/conceitos) e ${blogsCount} títulos inéditos para o BLOG (posts focados em dores, benefícios e região alvo).
-Além do título, forneça um 'summary' (resumo) de no máximo 3 linhas explicando o ângulo do artigo, um 'meta_title' (título focado em SEO, máx 60 caracteres) e uma 'meta_description' (descrição focada em clique, máx 160 caracteres).
+Além do título, forneça um 'summary' (resumo) de no máximo 3 linhas explicando o ângulo do artigo.
+IMPORTANTE: Crie um 'meta_title' focado em SEO que DEVE ter ESTRITAMENTE entre 40 e 60 caracteres.
+IMPORTANTE: Crie uma 'meta_description' focada em clique que DEVE ter ESTRITAMENTE entre 130 e 155 caracteres.
 
 Evite estes títulos já existentes: ${existingTitles || 'Nenhum'}.
 
