@@ -69,7 +69,10 @@ RETORNE APENAS UM JSON VÁLIDO no formato:
         })
       });
       const resData = await response.json();
-      rawJson = resData.choices[0]?.message?.content || '';
+      if (resData.error) {
+        throw new Error(resData.error.message || 'Erro na API da OpenAI');
+      }
+      rawJson = resData.choices?.[0]?.message?.content || '';
     }
 
     const cleanJson = rawJson.trim().replace(/^```json/, '').replace(/```$/, '');

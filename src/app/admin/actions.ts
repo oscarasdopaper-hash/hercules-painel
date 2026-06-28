@@ -563,7 +563,10 @@ Importante: Responda APENAS com o JSON bruto, sem blocos \`\`\`json.`;
       }
 
       const resData = await response.json();
-      resultText = resData.choices[0]?.message?.content || '';
+      if (resData.error) {
+        throw new Error(`OpenAI API Error: ${resData.error.message}`);
+      }
+      resultText = resData.choices?.[0]?.message?.content || '';
     }
 
 
@@ -707,7 +710,10 @@ Importante: Não adicione blocos de markdown adicionais como \`\`\`json no iníc
       }
 
       const resData = await response.json();
-      resultText = resData.choices[0]?.message?.content || '';
+      if (resData.error) {
+        throw new Error(`OpenAI API Error: ${resData.error.message}`);
+      }
+      resultText = resData.choices?.[0]?.message?.content || '';
     }
 
     const match = resultText.match(/\[[\s\S]*\]|\{[\s\S]*\}/);
