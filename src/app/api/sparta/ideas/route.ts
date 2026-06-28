@@ -52,8 +52,8 @@ Identidade da Empresa: ${company.company_identity || 'Profissional'}
 SUA TAREFA:
 Gere exatamente ${termsCount} títulos inéditos para o GLOSSÁRIO (termos técnicos/conceitos) e ${blogsCount} títulos inéditos para o BLOG (posts focados em dores, benefícios e região alvo).
 Além do título, forneça um 'summary' (resumo) de no máximo 3 linhas explicando o ângulo do artigo.
-IMPORTANTE: Crie um 'meta_title' focado em SEO que DEVE ter ESTRITAMENTE entre 40 e 60 caracteres. Ele DEVE incluir obrigatoriamente a Região Alvo e o Serviço/Produto.
-IMPORTANTE: Crie uma 'meta_description' focada em clique que DEVE ter ESTRITAMENTE entre 130 e 155 caracteres. Ela DEVE incluir obrigatoriamente a Região Alvo e o Serviço/Produto.
+REGRA CRÍTICA: O 'meta_title' DEVE ter entre 40 e 60 caracteres e é ABSOLUTAMENTE OBRIGATÓRIO que contenha a Região Alvo e o Serviço/Produto.
+REGRA CRÍTICA: A 'meta_description' DEVE ter entre 130 e 155 caracteres e é ABSOLUTAMENTE OBRIGATÓRIO que contenha a Região Alvo e o Serviço/Produto.
 
 Evite estes títulos já existentes: ${existingTitles || 'Nenhum'}.
 
