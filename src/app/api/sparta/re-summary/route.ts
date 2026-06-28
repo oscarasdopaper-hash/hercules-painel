@@ -34,7 +34,7 @@ O usuário acabou de definir um novo título para um artigo do tipo "${type}":
 TÍTULO: "${title}"
 
 Escreva um resumo estratégico de no máximo 3 linhas explicando o que será abordado neste artigo, focando na dor do cliente e nos benefícios do serviço.
-REGRA CRÍTICA: O 'meta_title' DEVE ter entre 40 e 60 caracteres e é ABSOLUTAMENTE OBRIGATÓRIO que contenha a Região Alvo e o Serviço/Produto.
+REGRA CRÍTICA: O 'meta_title' DEVE ter entre 40 e 60 caracteres e é ABSOLUTAMENTE OBRIGATÓRIO que contenha a Região Alvo e o Serviço/Produto. O título deve ser ORGÂNICO, persuasivo e natural (ex: "Películas de Privacidade: Conforto Absoluto em Alphaville"), não faça apenas "Serviço em Local - Empresa". NUNCA coloque o nome da empresa no meta_title.
 REGRA CRÍTICA: A 'meta_description' DEVE ter entre 130 e 155 caracteres e é ABSOLUTAMENTE OBRIGATÓRIO que contenha a Região Alvo e o Serviço/Produto.
 RETORNE APENAS UM JSON VÁLIDO no formato:
 { "summary": "...", "meta_title": "...", "meta_description": "..." }`;
