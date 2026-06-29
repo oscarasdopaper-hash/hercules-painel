@@ -367,7 +367,7 @@ export async function getAdminData(companyId?: string) {
         .from('terms')
         .select('*, category:categories(*)')
         .eq('company_id', companyId)
-        .order('title');
+        .order('created_at', { ascending: false });
 
       const { data: blogData } = await adminSupabase
         .from('blog_posts')
