@@ -41,7 +41,8 @@ import {
   getHunterSuggestions,
   updateHunterSuggestionStatus,
   generateImageSEO,
-  generateWhatsAppCTAs
+  generateWhatsAppCTAs,
+  autoCategorizeOrphans
 } from './actions';
 import styles from './admin.module.css';
 
@@ -62,6 +63,7 @@ export default function AdminPage() {
   const [loading, setLoading] = useState(true);
   const [actionLoading, setActionLoading] = useState(false);
   const [aiLoading, setAiLoading] = useState(false);
+  const [isCategorizing, setIsCategorizing] = useState(false);
   
   // Messages
   const [message, setMessage] = useState<{ type: 'success' | 'error', text: string } | null>(null);
@@ -558,6 +560,31 @@ Informações extras: "${aiPromptContext}".`;
       }));
     } else {
       showMsg('error', 'Erro na geração: ' + res.error);
+    }
+  };
+
+  const handleAutoCategorize = async () => {
+    if (!selectedCompanyId) {
+      showMsg('error', 'Selecione uma marca primeiro.');
+      return;
+    }
+    const companyActive = companies.find(c => c.id === selectedCompanyId);
+    const keyToUse = openaiKey || companyActive?.openai_key || '';
+    
+    if (!keyToUse) {
+      showMsg('error', 'Configure uma chave de IA (OpenAI/Gemini) nas configurações ou na marca.');
+      return;
+    }
+
+    setIsCategorizing(true);
+    const res = await autoCategorizeOrphans(selectedCompanyId, keyToUse);
+    setIsCategorizing(false);
+
+    if (res.success) {
+      showMsg('success', res.message || 'Órfãos categorizados com sucesso!');
+      loadData(selectedCompanyId);
+    } else {
+      showMsg('error', res.error || 'Erro ao categorizar termos.');
     }
   };
 
@@ -1702,15 +1729,26 @@ Informações extras: "${aiPromptContext}".`;
                 <div className={styles.listContainerFull}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
                     <h2 style={{ margin: 0 }}>Termos Ativos</h2>
-                    {selectedTerms.length > 0 && (
+                    <div style={{ display: 'flex', gap: '12px' }}>
                       <button 
-                        onClick={handleBulkDeleteTerms} 
-                        className={styles.deleteBtn}
-                        style={{ display: 'flex', alignItems: 'center', gap: '6px', padding: '8px 12px', background: '#fee2e2', color: '#b91c1c', border: '1px solid #fca5a5', borderRadius: '6px', cursor: 'pointer' }}
+                        onClick={handleAutoCategorize} 
+                        disabled={isCategorizing || actionLoading}
+                        className={styles.saveBtn}
+                        style={{ display: 'flex', alignItems: 'center', gap: '6px', padding: '8px 12px', background: 'var(--admin-accent)', color: 'white', border: 'none', borderRadius: '6px', cursor: 'pointer' }}
                       >
-                        <Trash2 size={16} /> Apagar Selecionados ({selectedTerms.length})
+                        {isCategorizing ? <Loader2 className={styles.spin} size={16} /> : <Sparkles size={16} />}
+                        {isCategorizing ? 'Categorizando...' : 'Auto-Categorizar Órfãos'}
                       </button>
-                    )}
+                      {selectedTerms.length > 0 && (
+                        <button 
+                          onClick={handleBulkDeleteTerms} 
+                          className={styles.deleteBtn}
+                          style={{ display: 'flex', alignItems: 'center', gap: '6px', padding: '8px 12px', background: '#fee2e2', color: '#b91c1c', border: '1px solid #fca5a5', borderRadius: '6px', cursor: 'pointer' }}
+                        >
+                          <Trash2 size={16} /> Apagar Selecionados ({selectedTerms.length})
+                        </button>
+                      )}
+                    </div>
                   </div>
                   <div className={styles.tableWrapper}>
                     <table className={styles.table}>

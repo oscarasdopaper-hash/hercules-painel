@@ -1037,3 +1037,89 @@ Exemplo de resposta:
     return { success: false, error: error.message };
   }
 }
+
+export async function autoCategorizeOrphans(companyId: string, apiKey: string) {
+  try {
+    const { data: categories } = await adminSupabase
+      .from('categories')
+      .select('id, name')
+      .eq('company_id', companyId);
+
+    if (!categories || categories.length === 0) {
+      return { success: false, error: 'Nenhuma categoria cadastrada nesta marca.' };
+    }
+
+    const { data: terms } = await adminSupabase
+      .from('terms')
+      .select('id, title')
+      .eq('company_id', companyId)
+      .is('category_id', null);
+
+    if (!terms || terms.length === 0) {
+      return { success: true, message: 'Nenhum termo órfão encontrado!' };
+    }
+
+    const batchSize = 50;
+    let totalCategorized = 0;
+
+    for (let i = 0; i < terms.length; i += batchSize) {
+      const batch = terms.slice(i, i + batchSize);
+      
+      const systemPrompt = `Você é um classificador inteligente. Sua função é analisar uma lista de Títulos de Artigos e mapeá-los para a Categoria que faz mais sentido.
+Categorias Disponíveis:
+${JSON.stringify(categories)}
+
+Regras:
+1. Escolha estritamente o "id" da categoria correspondente para cada termo.
+2. Se nenhuma categoria for coerente, retorne null.
+3. A resposta DEVE ser estritamente um array JSON no formato: [{"term_id": "ID_DO_TERMO", "category_id": "ID_DA_CATEGORIA_OU_NULL"}]
+4. Responda APENAS com o JSON puro, sem blocos markdown.
+
+Termos para categorizar:
+${JSON.stringify(batch)}
+`;
+
+      let resultText = '';
+      if (apiKey.trim().startsWith('AIza') || apiKey.trim().startsWith('AQ.')) {
+        const genAI = new GoogleGenerativeAI(apiKey);
+        const geminiModel = genAI.getGenerativeModel({ 
+          model: 'gemini-2.5-flash', 
+          systemInstruction: systemPrompt,
+          generationConfig: {
+            temperature: 0.2,
+            responseMimeType: "application/json"
+          }
+        });
+        const result = await geminiModel.generateContent("Prossiga com a categorização");
+        resultText = result.response.text();
+      } else {
+        const response = await fetch('https://api.openai.com/v1/chat/completions', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${apiKey}` },
+          body: JSON.stringify({
+            model: 'gpt-4o-mini',
+            messages: [{ role: 'system', content: systemPrompt }, { role: 'user', content: 'Prossiga com a categorização' }],
+            temperature: 0.2
+          })
+        });
+        const resData = await response.json();
+        resultText = resData.choices[0]?.message?.content || '';
+      }
+
+      const cleanJson = resultText.trim().replace(/^\s*\`\`\`json/, '').replace(/\`\`\`\s*$/, '');
+      const mappedData = JSON.parse(cleanJson);
+
+      for (const mapping of mappedData) {
+        if (mapping.category_id) {
+          await adminSupabase.from('terms').update({ category_id: mapping.category_id }).eq('id', mapping.term_id);
+          totalCategorized++;
+        }
+      }
+    }
+
+    return { success: true, message: `${totalCategorized} termos categorizados com sucesso!` };
+  } catch (error: any) {
+    console.error('Error in autoCategorizeOrphans:', error);
+    return { success: false, error: error.message };
+  }
+}
