@@ -1727,6 +1727,7 @@ Informações extras: "${aiPromptContext}".`;
                           <th>Título</th>
                           <th>Slug</th>
                           <th>Categoria</th>
+                          <th>Criado em</th>
                           <th>Status</th>
                           <th style={{width: '120px', textAlign: 'center'}}>Ações</th>
                         </tr>
@@ -1745,6 +1746,9 @@ Informações extras: "${aiPromptContext}".`;
                             <td className={styles.tdBold}>{t.title}</td>
                             <td>{t.slug}</td>
                             <td>{t.category?.name || 'Sem Categoria'}</td>
+                            <td style={{ fontSize: '0.85rem', color: '#64748b' }}>
+                              {new Date(t.created_at).toLocaleDateString('pt-BR')}
+                            </td>
                             <td>
                               <span className={`${styles.statusBadge} ${t.status === 'published' ? styles.statusPub : styles.statusDraft}`}>
                                 {t.status === 'published' ? 'Publicado' : 'Rascunho'}
@@ -1962,6 +1966,7 @@ Informações extras: "${aiPromptContext}".`;
                           <th>Título</th>
                           <th>Slug</th>
                           <th>Imagem de Destaque</th>
+                          <th>Criado em</th>
                           <th>Status</th>
                           <th style={{width: '120px', textAlign: 'center'}}>Ações</th>
                         </tr>
@@ -1977,6 +1982,9 @@ Informações extras: "${aiPromptContext}".`;
                               ) : (
                                 <span style={{ color: '#94a3b8', fontStyle: 'italic', fontSize: '12px' }}>Sem Imagem</span>
                               )}
+                            </td>
+                            <td style={{ fontSize: '0.85rem', color: '#64748b' }}>
+                              {new Date(bp.created_at).toLocaleDateString('pt-BR')}
                             </td>
                             <td>
                               <span className={`${styles.statusBadge} ${bp.status === 'published' ? styles.statusPub : styles.statusDraft}`}>
