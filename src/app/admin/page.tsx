@@ -1747,7 +1747,7 @@ Informações extras: "${aiPromptContext}".`;
                             <td>{t.slug}</td>
                             <td>{t.category?.name || 'Sem Categoria'}</td>
                             <td style={{ fontSize: '0.85rem', color: '#64748b' }}>
-                              {new Date(t.created_at).toLocaleDateString('pt-BR')}
+                              {new Date(t.created_at).toLocaleString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' })}
                             </td>
                             <td>
                               <span className={`${styles.statusBadge} ${t.status === 'published' ? styles.statusPub : styles.statusDraft}`}>
@@ -1993,7 +1993,7 @@ Informações extras: "${aiPromptContext}".`;
                               )}
                             </td>
                             <td style={{ fontSize: '0.85rem', color: '#64748b' }}>
-                              {new Date(bp.created_at).toLocaleDateString('pt-BR')}
+                              {new Date(bp.created_at).toLocaleString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' })}
                             </td>
                             <td>
                               <span className={`${styles.statusBadge} ${bp.status === 'published' ? styles.statusPub : styles.statusDraft}`}>
