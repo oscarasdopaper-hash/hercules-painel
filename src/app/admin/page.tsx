@@ -1756,6 +1756,15 @@ Informações extras: "${aiPromptContext}".`;
                             </td>
                             <td>
                               <div className={styles.rowActions}>
+                                <a 
+                                  href={`https://${activeCompany?.domain || activeCompany?.slug}/${t.slug}`} 
+                                  target="_blank" 
+                                  rel="noopener noreferrer" 
+                                  className={styles.editBtn} 
+                                  style={{ backgroundColor: '#f1f5f9', color: '#334155', border: '1px solid #cbd5e1', textDecoration: 'none' }}
+                                >
+                                  Ver
+                                </a>
                                 <button onClick={() => startEditTerm(t)} className={styles.editBtn}>Editar</button>
                                 <button onClick={() => handleDeleteTerm(t.id)} className={styles.deleteBtn}><Trash2 size={14} /></button>
                               </div>
@@ -1993,6 +2002,15 @@ Informações extras: "${aiPromptContext}".`;
                             </td>
                             <td>
                               <div className={styles.rowActions}>
+                                <a 
+                                  href={`https://${activeCompany?.domain || activeCompany?.slug}/blog/${bp.slug}`} 
+                                  target="_blank" 
+                                  rel="noopener noreferrer" 
+                                  className={styles.editBtn} 
+                                  style={{ backgroundColor: '#f1f5f9', color: '#334155', border: '1px solid #cbd5e1', textDecoration: 'none' }}
+                                >
+                                  Ver
+                                </a>
                                 <button onClick={() => startEditBlog(bp)} className={styles.editBtn}>Editar</button>
                                 <button onClick={() => handleDeleteBlog(bp.id)} className={styles.deleteBtn}>
                                   <Trash2 size={14} />
