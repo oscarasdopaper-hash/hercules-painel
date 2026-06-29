@@ -305,7 +305,7 @@ export default function ZeusPage() {
                                 <li key={p.slug} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '8px 12px', backgroundColor: 'white', border: '1px solid #cbd5e1', borderRadius: '6px' }}>
                                   <span style={{ fontSize: '14px', color: '#0f172a', fontWeight: '500' }}>{p.city}</span>
                                   <a 
-                                    href={`/servicos/${p.slug}`} 
+                                    href={`https://${companies.find(c => c.id === selectedCompanyId)?.domain || 'maben.com.br'}/servicos/${p.slug}`} 
                                     target="_blank" 
                                     rel="noopener noreferrer"
                                     style={{ fontSize: '12px', color: '#2563eb', textDecoration: 'none', backgroundColor: '#eff6ff', padding: '4px 10px', borderRadius: '12px', fontWeight: 'bold' }}
