@@ -54,6 +54,9 @@ export default function AdminPage() {
   const [autoLinks, setAutoLinks] = useState<AutoLink[]>([]);
   const [selectedCompanyId, setSelectedCompanyId] = useState<string>('');
   const [selectedTerms, setSelectedTerms] = useState<string[]>([]);
+  const [termsPage, setTermsPage] = useState(1);
+  const [blogPage, setBlogPage] = useState(1);
+  const ITEMS_PER_PAGE = 20;
   
   // Loading states
   const [loading, setLoading] = useState(true);
@@ -1729,7 +1732,7 @@ Informações extras: "${aiPromptContext}".`;
                         </tr>
                       </thead>
                       <tbody>
-                        {terms.map(t => (
+                        {terms.slice((termsPage - 1) * ITEMS_PER_PAGE, termsPage * ITEMS_PER_PAGE).map(t => (
                           <tr key={t.id}>
                             <td style={{ textAlign: 'center' }}>
                               <input 
@@ -1757,6 +1760,28 @@ Informações extras: "${aiPromptContext}".`;
                         ))}
                       </tbody>
                     </table>
+                    
+                    {terms.length > ITEMS_PER_PAGE && (
+                      <div style={{ display: 'flex', justifyContent: 'space-between', padding: '16px', alignItems: 'center', borderTop: '1px solid #e2e8f0', backgroundColor: '#f8fafc' }}>
+                        <button 
+                          onClick={() => setTermsPage(p => Math.max(1, p - 1))} 
+                          disabled={termsPage === 1}
+                          style={{ padding: '6px 12px', border: '1px solid #cbd5e1', borderRadius: '4px', background: termsPage === 1 ? '#f1f5f9' : 'white', cursor: termsPage === 1 ? 'not-allowed' : 'pointer', fontWeight: 500, color: '#334155' }}
+                        >
+                          Anterior
+                        </button>
+                        <span style={{ fontSize: '14px', color: '#64748b' }}>
+                          Página {termsPage} de {Math.ceil(terms.length / ITEMS_PER_PAGE)} (Total: {terms.length})
+                        </span>
+                        <button 
+                          onClick={() => setTermsPage(p => Math.min(Math.ceil(terms.length / ITEMS_PER_PAGE), p + 1))}
+                          disabled={termsPage >= Math.ceil(terms.length / ITEMS_PER_PAGE)}
+                          style={{ padding: '6px 12px', border: '1px solid #cbd5e1', borderRadius: '4px', background: termsPage >= Math.ceil(terms.length / ITEMS_PER_PAGE) ? '#f1f5f9' : 'white', cursor: termsPage >= Math.ceil(terms.length / ITEMS_PER_PAGE) ? 'not-allowed' : 'pointer', fontWeight: 500, color: '#334155' }}
+                        >
+                          Próxima
+                        </button>
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>
@@ -1942,7 +1967,7 @@ Informações extras: "${aiPromptContext}".`;
                         </tr>
                       </thead>
                       <tbody>
-                        {blogPosts.map(bp => (
+                        {blogPosts.slice((blogPage - 1) * ITEMS_PER_PAGE, blogPage * ITEMS_PER_PAGE).map(bp => (
                           <tr key={bp.id}>
                             <td className={styles.tdBold}>{bp.title}</td>
                             <td>{bp.slug}</td>
@@ -1970,6 +1995,28 @@ Informações extras: "${aiPromptContext}".`;
                         ))}
                       </tbody>
                     </table>
+                    
+                    {blogPosts.length > ITEMS_PER_PAGE && (
+                      <div style={{ display: 'flex', justifyContent: 'space-between', padding: '16px', alignItems: 'center', borderTop: '1px solid #e2e8f0', backgroundColor: '#f8fafc' }}>
+                        <button 
+                          onClick={() => setBlogPage(p => Math.max(1, p - 1))} 
+                          disabled={blogPage === 1}
+                          style={{ padding: '6px 12px', border: '1px solid #cbd5e1', borderRadius: '4px', background: blogPage === 1 ? '#f1f5f9' : 'white', cursor: blogPage === 1 ? 'not-allowed' : 'pointer', fontWeight: 500, color: '#334155' }}
+                        >
+                          Anterior
+                        </button>
+                        <span style={{ fontSize: '14px', color: '#64748b' }}>
+                          Página {blogPage} de {Math.ceil(blogPosts.length / ITEMS_PER_PAGE)} (Total: {blogPosts.length})
+                        </span>
+                        <button 
+                          onClick={() => setBlogPage(p => Math.min(Math.ceil(blogPosts.length / ITEMS_PER_PAGE), p + 1))}
+                          disabled={blogPage >= Math.ceil(blogPosts.length / ITEMS_PER_PAGE)}
+                          style={{ padding: '6px 12px', border: '1px solid #cbd5e1', borderRadius: '4px', background: blogPage >= Math.ceil(blogPosts.length / ITEMS_PER_PAGE) ? '#f1f5f9' : 'white', cursor: blogPage >= Math.ceil(blogPosts.length / ITEMS_PER_PAGE) ? 'not-allowed' : 'pointer', fontWeight: 500, color: '#334155' }}
+                        >
+                          Próxima
+                        </button>
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>
