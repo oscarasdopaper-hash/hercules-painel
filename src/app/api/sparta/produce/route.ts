@@ -78,7 +78,7 @@ export async function POST(request: Request) {
       }
 
       const initial = trimmedTitle.charAt(0).toUpperCase();
-      const finalSlug = resContent.data.seo_slug || slug;
+      const finalSlug = resContent.data.seo_slug ? slugify(resContent.data.seo_slug) : slug;
 
       const { error: insertError } = await adminSupabase
         .from('terms')
