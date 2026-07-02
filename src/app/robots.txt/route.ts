@@ -4,7 +4,7 @@ export async function GET(request: Request) {
   const host = request.headers.get('host') || 'localhost:3000';
   
   const robots = `User-agent: *
-Allow: /
+Disallow: /
 
 Sitemap: https://${host}/sitemap.xml
 `;
